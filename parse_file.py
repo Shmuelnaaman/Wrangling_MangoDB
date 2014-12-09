@@ -16,21 +16,30 @@ DATAFILE = "beatles-diskography.csv"
 
 def parse_file(datafile):
     data = []
-    ii=0
-    with open(datafile, "r") as f:
+    counter=0
+    with open(datafile, "r") as f:        
         for line in f:            
             dat = line.strip().split(",")
-            if dat[0] == 'Title':
+            if dat[0] == 'Title':                
                  header=dat
             else :
-                ii+=1
-                if ii<11 :
-                     data.append(dict(zip(header, dat)))
-           
+                dat = line.strip().split(",")
+                if counter<11 :
+                     data.append(dict(zip(header, dat)))           
     print data            
     return data
+    '''
+    # alternaivly 
+    data=[]
+    n=0
+    with open (datafile, "rb") as sd:
+         r=csv.DictReader(sd)
+         for line in r
+              data.append(line)
+    return data
+              
 
-
+'''
 def test():
     # a simple test of your implemetation
     datafile = os.path.join(DATADIR, DATAFILE)
